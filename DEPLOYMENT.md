@@ -55,7 +55,7 @@ git push -u origin main
 5. **Add Environment Variables:**
    - Click "Environment Variables"
    - Add variable:
-     - Name: `API_KEY`
+     - Name: `VITE_API_KEY` (must be prefixed with VITE_ for Vite apps)
      - Value: `your_gemini_api_key_here`
      - Environment: **All** (Production, Preview, Development)
 6. Click **"Deploy"**
@@ -83,7 +83,7 @@ vercel
 # - Want to override the settings? No
 
 # Add environment variable
-vercel env add API_KEY
+vercel env add VITE_API_KEY
 
 # Deploy to production
 vercel --prod
@@ -99,7 +99,7 @@ If you forgot to add environment variables during setup:
 2. Click **"Settings"** tab
 3. Click **"Environment Variables"** in the sidebar
 4. Add your variables:
-   - **Name:** `API_KEY`
+   - **Name:** `VITE_API_KEY` (must be prefixed with VITE_)
    - **Value:** Your Gemini API key
    - **Environments:** Select all (Production, Preview, Development)
 5. Click **"Save"**
@@ -147,9 +147,12 @@ After deployment completes:
 
 ## 🐛 Troubleshooting
 
-### Issue: "API_KEY environment variable not set"
+### Issue: "VITE_API_KEY environment variable not set"
 
-**Solution:** Make sure you added the `API_KEY` environment variable in Vercel settings and redeployed.
+**Solution:** 
+- Make sure you added the `VITE_API_KEY` environment variable (with VITE_ prefix) in Vercel settings
+- Redeploy after adding the variable
+- For Vite apps, all client-side environment variables MUST start with `VITE_`
 
 ### Issue: Build fails on Vercel
 

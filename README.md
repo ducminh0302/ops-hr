@@ -62,13 +62,15 @@ A modern, AI-powered Human Resources Management System that streamlines recruitm
    
    Create a `.env.local` file in the root directory:
    ```env
-   API_KEY=your_gemini_api_key_here
+   VITE_API_KEY=your_gemini_api_key_here
    ```
    
    Or copy from the example file:
    ```bash
    cp .env.example .env.local
    ```
+   
+   **Note:** Vite requires environment variables to be prefixed with `VITE_` to be exposed to the client.
 
 4. **Run the development server**
    ```bash
@@ -100,14 +102,15 @@ A modern, AI-powered Human Resources Management System that streamlines recruitm
 3. **Set environment variables in Vercel**
    
    Go to your Vercel project settings → Environment Variables → Add:
-   - Key: `API_KEY`
+   - Key: `VITE_API_KEY`
    - Value: Your Gemini API key
+   - Environments: All (Production, Preview, Development)
 
 ## 🔒 Environment Variables
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `API_KEY` | Google Gemini API Key | Yes |
+| `VITE_API_KEY` | Google Gemini API Key (must be prefixed with VITE_ for Vite) | Yes |
 
 ## 📝 Usage
 
