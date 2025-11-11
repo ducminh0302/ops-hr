@@ -68,9 +68,21 @@ export const ScreeningView: React.FC<ScreeningViewProps> = ({ onBack, onComplete
         const candidateData = await screenCandidateCv(cvText, jobTitle, specialRequirements);
         onComplete(candidateData);
       }
-    } catch (err) {
-      setError('Failed to screen candidate(s). Please try again.');
-      console.error(err);
+    } catch (err: any) {
+      console.error('Screening error:', err);
+      
+      // Provide more detailed error messages
+      if (err.message?.includes('API_KEY')) {
+        setError('⚠️ API Key not configured. Please set the API_KEY environment variable.');
+      } else if (err.message?.includes('quota') || err.message?.includes('rate limit')) {
+        setError('⚠️ API rate limit exceeded. Please try again later.');
+      } else if (err.message?.includes('network') || err.message?.includes('fetch')) {
+        setError('⚠️ Network error. Please check your internet connection.');
+      } else if (err.message?.includes('JSON')) {
+        setError('⚠️ Failed to parse AI response. Please try again.');
+      } else {
+        setError(`⚠️ Failed to screen candidate(s): ${err.message || 'Unknown error'}. Please try again.`);
+      }
     } finally {
       setIsLoading(false);
     }
